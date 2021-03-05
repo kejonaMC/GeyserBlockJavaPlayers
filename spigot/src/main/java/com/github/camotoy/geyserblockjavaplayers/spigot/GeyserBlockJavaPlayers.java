@@ -35,7 +35,7 @@ public final class GeyserBlockJavaPlayers extends JavaPlugin implements Listener
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if (event.getPlayer().hasPermission("geyserblockjavaplayers.bypass")){
+        if (event.getPlayer().hasPermission("geyserblockjavaplayers.bypass")) {
             return;
         }
         boolean isBedrockPlayer = this.playerChecker.isBedrockPlayer(event.getPlayer().getUniqueId());
