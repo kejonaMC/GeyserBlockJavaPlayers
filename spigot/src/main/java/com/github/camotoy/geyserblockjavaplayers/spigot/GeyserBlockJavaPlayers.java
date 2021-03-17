@@ -21,7 +21,7 @@ public final class GeyserBlockJavaPlayers extends JavaPlugin implements Listener
             return;
         }
         if (hasFloodgate) {
-            this.playerChecker = new FloodgateSpigotJavaPlayerChecker();
+            this.playerChecker = new com.github.camotoy.geyserblockjavaplayers.spigot.FloodgateSpigotJavaPlayerChecker();
         } else {
             this.playerChecker = new GeyserJavaPlayerChecker();
         }
