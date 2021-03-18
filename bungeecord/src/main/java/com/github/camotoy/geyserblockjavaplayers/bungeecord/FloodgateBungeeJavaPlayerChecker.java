@@ -1,4 +1,4 @@
-package com.github.camotoy.geyserblockjavaplayers.bungee;
+package com.github.camotoy.geyserblockjavaplayers.bungeecord;
 
 import com.github.camotoy.geyserblockjavaplayers.common.JavaPlayerChecker;
 import org.geysermc.floodgate.FloodgateAPI;
