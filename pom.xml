@@ -6,14 +6,14 @@
 
     <groupId>com.github.camotoy.geyserblockjavaplayers</groupId>
     <artifactId>GeyserBlockJavaPlayers</artifactId>
+    <packaging>pom</packaging>
     <version>1.1-SNAPSHOT</version>
+
     <modules>
+        <module>bungeecord</module>
         <module>common</module>
         <module>spigot</module>
     </modules>
-    <packaging>pom</packaging>
-
-    <name>GeyserBlockJavaPlayers</name>
 
     <description>Prevent Java players from joining your server</description>
     <properties>
