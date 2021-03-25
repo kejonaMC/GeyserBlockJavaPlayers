@@ -3,4 +3,4 @@ version: ${project.version}
 main: com.github.camotoy.geyserblockjavaplayers.spigot.GeyserBlockJavaPlayers
 api-version: 1.13
 description: Prevent Java players from joining your server
-softdepend: [floodgate-bukkit, Geyser-Spigot]
+softdepend: [floodgate, Geyser-Spigot]
