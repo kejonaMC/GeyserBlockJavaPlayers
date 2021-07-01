@@ -1,5 +1,6 @@
 package com.github.camotoy.geyserblockjavaplayers.bungeecord;
 
+import com.github.camotoy.geyserblockjavaplayers.common.FloodgateJavaPlayerChecker;
 import com.github.camotoy.geyserblockjavaplayers.common.GeyserJavaPlayerChecker;
 import com.github.camotoy.geyserblockjavaplayers.common.JavaPlayerChecker;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -13,24 +14,20 @@ public final class GeyserBlockJavaPlayers extends Plugin implements Listener {
 
     @Override
     public void onEnable() {
-        boolean hasFloodgate = getProxy().getPluginManager().getPlugin("floodgate-bungee") != null;
-        boolean hasGeyser = getProxy().getPluginManager().getPlugin("Geyser-Spigot") != null;
+        boolean hasFloodgate = getProxy().getPluginManager().getPlugin("floodgate") != null;
+        boolean hasGeyser = getProxy().getPluginManager().getPlugin("Geyser-BungeeCord") != null;
         if (!hasFloodgate && !hasGeyser) {
             getLogger().warning("There is no Geyser or Floodgate plugin detected! Disabling...");
             onDisable();
             return;
         }
         if (hasFloodgate) {
-            this.playerChecker = new FloodgateBungeeJavaPlayerChecker();
+            this.playerChecker = new FloodgateJavaPlayerChecker();
         } else {
             this.playerChecker = new GeyserJavaPlayerChecker();
         }
 
         getProxy().getPluginManager().registerListener(this, this);
-    }
-
-    @Override
-    public void onDisable() {
     }
 
     @EventHandler
@@ -40,7 +37,7 @@ public final class GeyserBlockJavaPlayers extends Plugin implements Listener {
         }
         boolean isBedrockPlayer = this.playerChecker.isBedrockPlayer(event.getPlayer().getUniqueId());
         if (!isBedrockPlayer) {
-                    event.getPlayer().disconnect(new TextComponent("This server can only be joined by Bedrock players!"));
+            event.getPlayer().disconnect(new TextComponent("This server can only be joined by Bedrock players!"));
         }
     }
 }

@@ -30,10 +30,6 @@ public final class GeyserBlockJavaPlayers extends JavaPlugin implements Listener
         Bukkit.getPluginManager().registerEvents(this, this);
     }
 
-    @Override
-    public void onDisable() {
-    }
-
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         if (event.getPlayer().hasPermission("geyserblockjavaplayers.bypass")) {
