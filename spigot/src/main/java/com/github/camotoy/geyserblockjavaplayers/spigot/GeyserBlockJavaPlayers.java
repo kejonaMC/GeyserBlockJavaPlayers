@@ -13,7 +13,7 @@ public final class GeyserBlockJavaPlayers extends JavaPlugin implements Listener
 
     @Override
     public void onEnable() {
-        boolean hasFloodgate = Bukkit.getPluginManager().getPlugin("floodgate-bukkit") != null;
+        boolean hasFloodgate = Bukkit.getPluginManager().getPlugin("floodgate-spigot") != null;
         boolean hasGeyser = Bukkit.getPluginManager().getPlugin("Geyser-Spigot") != null;
         if (!hasFloodgate && !hasGeyser) {
             getLogger().warning("There is no Geyser or Floodgate plugin detected! Disabling...");
