@@ -1,5 +1,6 @@
 package com.github.camotoy.geyserblockjavaplayers.spigot;
 
+import com.github.camotoy.geyserblockjavaplayers.common.FloodgateJavaPlayerChecker;
 import com.github.camotoy.geyserblockjavaplayers.common.GeyserJavaPlayerChecker;
 import com.github.camotoy.geyserblockjavaplayers.common.JavaPlayerChecker;
 import org.bukkit.Bukkit;
@@ -13,7 +14,7 @@ public final class GeyserBlockJavaPlayers extends JavaPlugin implements Listener
 
     @Override
     public void onEnable() {
-        boolean hasFloodgate = Bukkit.getPluginManager().getPlugin("floodgate-spigot") != null;
+        boolean hasFloodgate = Bukkit.getPluginManager().getPlugin("floodgate") != null;
         boolean hasGeyser = Bukkit.getPluginManager().getPlugin("Geyser-Spigot") != null;
         if (!hasFloodgate && !hasGeyser) {
             getLogger().warning("There is no Geyser or Floodgate plugin detected! Disabling...");
@@ -21,7 +22,7 @@ public final class GeyserBlockJavaPlayers extends JavaPlugin implements Listener
             return;
         }
         if (hasFloodgate) {
-            this.playerChecker = new FloodgateSpigotJavaPlayerChecker();
+            this.playerChecker = new FloodgateJavaPlayerChecker();
         } else {
             this.playerChecker = new GeyserJavaPlayerChecker();
         }
