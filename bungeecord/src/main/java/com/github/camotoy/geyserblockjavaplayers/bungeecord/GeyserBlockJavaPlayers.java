@@ -1,24 +1,24 @@
-package com.github.camotoy.geyserblockjavaplayers.spigot;
+package com.github.camotoy.geyserblockjavaplayers.bungeecord;
 
 import com.github.camotoy.geyserblockjavaplayers.common.FloodgateJavaPlayerChecker;
 import com.github.camotoy.geyserblockjavaplayers.common.GeyserJavaPlayerChecker;
 import com.github.camotoy.geyserblockjavaplayers.common.JavaPlayerChecker;
-import org.bukkit.Bukkit;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.plugin.java.JavaPlugin;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.api.plugin.Listener;
+import net.md_5.bungee.api.plugin.Plugin;
+import net.md_5.bungee.event.EventHandler;
 
-public final class GeyserBlockJavaPlayers extends JavaPlugin implements Listener {
+public final class GeyserBlockJavaPlayers extends Plugin implements Listener {
     private JavaPlayerChecker playerChecker;
 
     @Override
     public void onEnable() {
-        boolean hasFloodgate = Bukkit.getPluginManager().getPlugin("floodgate") != null;
-        boolean hasGeyser = Bukkit.getPluginManager().getPlugin("Geyser-Spigot") != null;
+        boolean hasFloodgate = getProxy().getPluginManager().getPlugin("floodgate") != null;
+        boolean hasGeyser = getProxy().getPluginManager().getPlugin("Geyser-BungeeCord") != null;
         if (!hasFloodgate && !hasGeyser) {
             getLogger().warning("There is no Geyser or Floodgate plugin detected! Disabling...");
-            Bukkit.getPluginManager().disablePlugin(this);
+            onDisable();
             return;
         }
         if (hasFloodgate) {
@@ -27,17 +27,17 @@ public final class GeyserBlockJavaPlayers extends JavaPlugin implements Listener
             this.playerChecker = new GeyserJavaPlayerChecker();
         }
 
-        Bukkit.getPluginManager().registerEvents(this, this);
+        getProxy().getPluginManager().registerListener(this, this);
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    public void onPlayerJoin(PostLoginEvent event) {
         if (event.getPlayer().hasPermission("geyserblockjavaplayers.bypass")) {
             return;
         }
         boolean isBedrockPlayer = this.playerChecker.isBedrockPlayer(event.getPlayer().getUniqueId());
         if (!isBedrockPlayer) {
-            event.getPlayer().kickPlayer("This server can only be joined by Bedrock players!");
+            event.getPlayer().disconnect(new TextComponent("This server can only be joined by Bedrock players!"));
         }
     }
 }
