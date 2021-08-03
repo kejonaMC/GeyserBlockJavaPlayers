@@ -7,7 +7,7 @@
     <groupId>com.github.camotoy.geyserblockjavaplayers</groupId>
     <artifactId>GeyserBlockJavaPlayers</artifactId>
     <packaging>pom</packaging>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
 
     <modules>
         <module>bungeecord</module>
