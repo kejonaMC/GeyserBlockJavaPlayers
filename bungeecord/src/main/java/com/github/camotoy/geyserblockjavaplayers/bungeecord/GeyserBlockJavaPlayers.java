@@ -12,12 +12,10 @@ import net.md_5.bungee.event.EventHandler;
 
 public final class GeyserBlockJavaPlayers extends Plugin implements Listener {
     private JavaPlayerChecker playerChecker;
-    public GeyserBlockJavaPlayers plugin;
     public Configurate config;
 
     @Override
     public void onEnable() {
-        plugin = this;
         config = Configurate.create(this.getDataFolder().toPath());
         boolean hasFloodgate = getProxy().getPluginManager().getPlugin("floodgate") != null;
         boolean hasGeyser = getProxy().getPluginManager().getPlugin("Geyser-BungeeCord") != null;
