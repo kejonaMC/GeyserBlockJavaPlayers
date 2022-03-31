@@ -15,7 +15,7 @@ public class Configurate {
     }
 
     /**
-     * Load EcoBase config
+     * Load config
      *
      * @param dataDirectory The config's directory
      */
