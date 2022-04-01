@@ -19,7 +19,7 @@ public class Configurate {
      *
      * @param dataDirectory The config's directory
      */
-    public static Configurate create(Path dataDirectory){
+    public static Configurate create(Path dataDirectory) {
         File folder = dataDirectory.toFile();
         File file = new File(folder, "config.yml");
 
@@ -33,17 +33,15 @@ public class Configurate {
                 } else {
                     file.createNewFile();
                 }
-            } catch (IOException exception) {
-                exception.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-
-        // Read config
         try {
             final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
             return mapper.readValue(dataDirectory.resolve("config.yml").toFile(), Configurate.class);
         } catch (IOException e) {
-            throw new RuntimeException("Cannot create GeyserSkinManager config!", e);
+            throw new RuntimeException("Cannot create GeyserBlockJavaPlayers config!", e);
         }
     }
 
