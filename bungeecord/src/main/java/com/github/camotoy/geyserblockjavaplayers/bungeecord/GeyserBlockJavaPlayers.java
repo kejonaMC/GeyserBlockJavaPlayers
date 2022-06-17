@@ -4,6 +4,7 @@ import com.github.camotoy.geyserblockjavaplayers.common.Configurate;
 import com.github.camotoy.geyserblockjavaplayers.common.FloodgateJavaPlayerChecker;
 import com.github.camotoy.geyserblockjavaplayers.common.GeyserJavaPlayerChecker;
 import com.github.camotoy.geyserblockjavaplayers.common.JavaPlayerChecker;
+import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.event.PostLoginEvent;
 import net.md_5.bungee.api.plugin.Listener;
@@ -40,7 +41,7 @@ public final class GeyserBlockJavaPlayers extends Plugin implements Listener {
         }
         boolean isBedrockPlayer = this.playerChecker.isBedrockPlayer(event.getPlayer().getUniqueId());
         if (!isBedrockPlayer) {
-            event.getPlayer().disconnect(new TextComponent(config.getBlockJavaMessage()));
+            event.getPlayer().disconnect(new TextComponent(ChatColor.translateAlternateColorCodes( '&', config.getBlockJavaMessage())));
         }
     }
 }
