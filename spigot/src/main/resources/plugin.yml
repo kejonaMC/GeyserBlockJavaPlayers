@@ -1,6 +1,6 @@
 name: GeyserBlockJavaPlayers
 version: ${project.version}
-main: com.github.camotoy.geyserblockjavaplayers.spigot.GeyserBlockJavaPlayers
+main: com.github.camotoy.geyserblockjavaplayers.GeyserBlockJavaPlayersSpigot
 api-version: 1.13
 description: Prevent Java players from joining your server
 softdepend: [floodgate, Geyser-Spigot]

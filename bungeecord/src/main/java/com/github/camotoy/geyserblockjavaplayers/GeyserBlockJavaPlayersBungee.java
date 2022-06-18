@@ -1,4 +1,4 @@
-package com.github.camotoy.geyserblockjavaplayers.bungeecord;
+package com.github.camotoy.geyserblockjavaplayers;
 
 import com.github.camotoy.geyserblockjavaplayers.common.*;
 import net.md_5.bungee.api.ChatColor;
@@ -8,7 +8,7 @@ import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
 
-public final class GeyserBlockJavaPlayers extends Plugin implements Listener {
+public final class GeyserBlockJavaPlayersBungee extends Plugin implements Listener {
     private JavaPlayerChecker playerChecker;
     public Configurate config;
 

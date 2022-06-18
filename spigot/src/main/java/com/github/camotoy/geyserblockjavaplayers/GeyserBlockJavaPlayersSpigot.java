@@ -1,4 +1,4 @@
-package com.github.camotoy.geyserblockjavaplayers.spigot;
+package com.github.camotoy.geyserblockjavaplayers;
 
 import com.github.camotoy.geyserblockjavaplayers.common.Configurate;
 import com.github.camotoy.geyserblockjavaplayers.common.FloodgateJavaPlayerChecker;
@@ -11,7 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class GeyserBlockJavaPlayers extends JavaPlugin implements Listener {
+public final class GeyserBlockJavaPlayersSpigot extends JavaPlugin implements Listener {
     private JavaPlayerChecker playerChecker;
     public Configurate config;
 

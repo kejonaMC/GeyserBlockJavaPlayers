@@ -13,6 +13,7 @@
         <module>bungeecord</module>
         <module>common</module>
         <module>spigot</module>
+        <module>velocity</module>
     </modules>
 
     <description>Prevent Java players from joining your server</description>
