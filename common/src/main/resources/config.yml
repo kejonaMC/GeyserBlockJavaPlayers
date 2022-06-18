@@ -1,1 +1,9 @@
+# Disconnect message to players.
 block-java-message: "This server can only be joined by Bedrock players!"
+
+# Proxy options to exclude specified server.
+# The "all" option will deny access to the whole network.
+deny-server-access:
+  -
+#  - "all"
+  - "serverhere"

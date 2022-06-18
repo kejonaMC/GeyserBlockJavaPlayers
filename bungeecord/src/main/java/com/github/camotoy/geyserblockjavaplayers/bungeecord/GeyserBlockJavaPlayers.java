@@ -1,12 +1,9 @@
 package com.github.camotoy.geyserblockjavaplayers.bungeecord;
 
-import com.github.camotoy.geyserblockjavaplayers.common.Configurate;
-import com.github.camotoy.geyserblockjavaplayers.common.FloodgateJavaPlayerChecker;
-import com.github.camotoy.geyserblockjavaplayers.common.GeyserJavaPlayerChecker;
-import com.github.camotoy.geyserblockjavaplayers.common.JavaPlayerChecker;
+import com.github.camotoy.geyserblockjavaplayers.common.*;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.event.PostLoginEvent;
+import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
@@ -35,12 +32,20 @@ public final class GeyserBlockJavaPlayers extends Plugin implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PostLoginEvent event) {
-        if (event.getPlayer().hasPermission("geyserblockjavaplayers.bypass")) {
+    public void onPlayerJoin(ServerConnectedEvent event) {
+        if (event.getPlayer().hasPermission(Permission.bypassPermission)) {
             return;
         }
+
         boolean isBedrockPlayer = this.playerChecker.isBedrockPlayer(event.getPlayer().getUniqueId());
-        if (!isBedrockPlayer) {
+        String servername = event.getServer().getInfo().getName();
+
+        if (!isBedrockPlayer
+                // Check if the "deny-server-access:" list contains the server name.
+                && config.getNoServerAccess().contains(servername)
+                // Then check if the list contains "all" in case they want full network deny
+                || config.getNoServerAccess().contains("all")) {
+            // Disconnect Java player
             event.getPlayer().disconnect(new TextComponent(ChatColor.translateAlternateColorCodes( '&', config.getBlockJavaMessage())));
         }
     }
