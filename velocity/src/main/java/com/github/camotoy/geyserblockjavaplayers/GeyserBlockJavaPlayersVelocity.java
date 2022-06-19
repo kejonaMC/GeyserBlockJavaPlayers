@@ -21,14 +21,12 @@ import java.nio.file.Path;
         version = "1.0-SNAPSHOT"
 )
 public class GeyserBlockJavaPlayersVelocity {
-
     private final Logger logger;
     private final ProxyServer server;
     private Configurate config = null;
     private final Path dataDirectory;
     private JavaPlayerChecker playerChecker;
     private static LegacyComponentSerializer serializer = LegacyComponentSerializer.builder().character('&').hexCharacter('#').hexColors().build();
-
 
     @Inject
     public GeyserBlockJavaPlayersVelocity(ProxyServer server, Logger logger, @DataDirectory final Path folder) {
@@ -39,6 +37,7 @@ public class GeyserBlockJavaPlayersVelocity {
 
     @Subscribe
     public void onProxyInitialization(ProxyInitializeEvent event) {
+        config = Configurate.create(this.dataDirectory);
         boolean hasFloodgate = server.getPluginManager().isLoaded("floodgate");
         boolean hasGeyser = server.getPluginManager().isLoaded("Geyser-Velocity");
 
@@ -47,8 +46,6 @@ public class GeyserBlockJavaPlayersVelocity {
             onDisable();
             return;
         }
-
-        config = Configurate.create(this.dataDirectory);
 
         if (hasFloodgate) {
             this.playerChecker = new FloodgateJavaPlayerChecker();

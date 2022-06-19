@@ -17,11 +17,13 @@ public final class GeyserBlockJavaPlayersBungee extends Plugin implements Listen
         config = Configurate.create(this.getDataFolder().toPath());
         boolean hasFloodgate = getProxy().getPluginManager().getPlugin("floodgate") != null;
         boolean hasGeyser = getProxy().getPluginManager().getPlugin("Geyser-BungeeCord") != null;
+
         if (!hasFloodgate && !hasGeyser) {
             getLogger().warning("There is no Geyser or Floodgate plugin detected! Disabling...");
             onDisable();
             return;
         }
+
         if (hasFloodgate) {
             this.playerChecker = new FloodgateJavaPlayerChecker();
         } else {

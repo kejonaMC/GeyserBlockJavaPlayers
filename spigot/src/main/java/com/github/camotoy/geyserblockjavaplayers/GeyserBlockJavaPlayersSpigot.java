@@ -20,11 +20,13 @@ public final class GeyserBlockJavaPlayersSpigot extends JavaPlugin implements Li
         config = Configurate.create(this.getDataFolder().toPath());
         boolean hasFloodgate = Bukkit.getPluginManager().getPlugin("floodgate") != null;
         boolean hasGeyser = Bukkit.getPluginManager().getPlugin("Geyser-Spigot") != null;
+
         if (!hasFloodgate && !hasGeyser) {
             getLogger().warning("There is no Geyser or Floodgate plugin detected! Disabling...");
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
+
         if (hasFloodgate) {
             this.playerChecker = new FloodgateJavaPlayerChecker();
         } else {

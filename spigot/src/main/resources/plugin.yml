@@ -4,3 +4,7 @@ main: com.github.camotoy.geyserblockjavaplayers.GeyserBlockJavaPlayersSpigot
 api-version: 1.13
 description: Prevent Java players from joining your server
 softdepend: [floodgate, Geyser-Spigot]
+permissions:
+  geyserblockjavaplayers.bypass:
+    description: Give players bypass
+    default: op
