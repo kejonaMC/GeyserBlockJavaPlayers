@@ -1,9 +1,6 @@
 package com.github.camotoy.geyserblockjavaplayers;
 
-import com.github.camotoy.geyserblockjavaplayers.common.Configurate;
-import com.github.camotoy.geyserblockjavaplayers.common.FloodgateJavaPlayerChecker;
-import com.github.camotoy.geyserblockjavaplayers.common.GeyserJavaPlayerChecker;
-import com.github.camotoy.geyserblockjavaplayers.common.JavaPlayerChecker;
+import com.github.camotoy.geyserblockjavaplayers.common.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
@@ -38,10 +35,12 @@ public final class GeyserBlockJavaPlayersSpigot extends JavaPlugin implements Li
 
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
-        if (event.getPlayer().hasPermission("geyserblockjavaplayers.bypass")) {
+        if (event.getPlayer().hasPermission(Permission.bypassPermission)) {
             return;
         }
+
         boolean isBedrockPlayer = this.playerChecker.isBedrockPlayer(event.getPlayer().getUniqueId());
+
         if (!isBedrockPlayer) {
             event.getPlayer().kickPlayer(ChatColor.translateAlternateColorCodes('&',config.getBlockJavaMessage()));
         }
