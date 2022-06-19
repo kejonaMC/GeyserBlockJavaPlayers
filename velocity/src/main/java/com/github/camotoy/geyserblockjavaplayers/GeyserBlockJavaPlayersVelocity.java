@@ -18,7 +18,7 @@ import java.nio.file.Path;
 @Plugin(
         id = "geyserblockjavaplayers",
         name = "GeyserBlockJavaPlayers",
-        version = "1.0-SNAPSHOT"
+        version = "1.2-SNAPSHOT"
 )
 public class GeyserBlockJavaPlayersVelocity {
     private final Logger logger;
@@ -42,8 +42,7 @@ public class GeyserBlockJavaPlayersVelocity {
         boolean hasGeyser = server.getPluginManager().isLoaded("Geyser-Velocity");
 
         if (!hasFloodgate && !hasGeyser) {
-            logger.warn("There is no Geyser or Floodgate plugin detected! Disabling...");
-            onDisable();
+            logger.warn("There is no Geyser or Floodgate plugin detected!");
             return;
         }
 
@@ -52,12 +51,6 @@ public class GeyserBlockJavaPlayersVelocity {
         } else {
             this.playerChecker = new GeyserJavaPlayerChecker();
         }
-
-        server.getEventManager().register(this, this);
-    }
-    @Subscribe
-    public void onDisable() {
-
     }
 
     @Subscribe(order = PostOrder.FIRST)
@@ -75,7 +68,7 @@ public class GeyserBlockJavaPlayersVelocity {
                 // Then check if the list contains "all" in case they want full network deny
                 || config.getNoServerAccess().contains("all")) {
             // Disconnect Java player
-            event.getPlayer().disconnect(color( config.getBlockJavaMessage()));
+            event.getPlayer().disconnect(color(config.getBlockJavaMessage()));
         }
     }
 
