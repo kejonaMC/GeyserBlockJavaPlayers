@@ -9,11 +9,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 public class Configurate {
-    public Configurate() {
-    }
-
     /**
      * Load config
      *
@@ -47,6 +45,12 @@ public class Configurate {
 
     @JsonProperty("block-java-message")
     private String blockJavaMessage;
+
+    @JsonProperty("deny-server-access")
+    private List<String> noServerAccess;
+
+    public List<String> getNoServerAccess() { return noServerAccess; }
+
     public String getBlockJavaMessage() {
         return blockJavaMessage;
     }

@@ -1,6 +1,6 @@
 name: GeyserBlockJavaPlayers
 version: ${project.version}
-main: com.github.camotoy.geyserblockjavaplayers.bungeecord.GeyserBlockJavaPlayers
+main: com.github.camotoy.geyserblockjavaplayers.GeyserBlockJavaPlayersBungee
 description: Prevent Java players from joining your server
 softdepends: [floodgate, Geyser-BungeeCord]
 author: Camotoy
