@@ -3,7 +3,7 @@ package com.github.camotoy.geyserblockjavaplayers;
 import com.github.camotoy.geyserblockjavaplayers.common.*;
 import com.google.inject.Inject;
 import com.velocitypowered.api.event.PostOrder;
-import com.velocitypowered.api.event.player.ServerPreConnectEvent;
+import com.velocitypowered.api.event.player.ServerConnectedEvent;
 import com.velocitypowered.api.event.proxy.ProxyInitializeEvent;
 import com.velocitypowered.api.event.Subscribe;
 import com.velocitypowered.api.plugin.Plugin;
@@ -54,13 +54,13 @@ public class GeyserBlockJavaPlayersVelocity {
     }
 
     @Subscribe(order = PostOrder.FIRST)
-    public void onPlayerChangeServer(ServerPreConnectEvent event) {
+    public void onPlayerChangeServer(ServerConnectedEvent event) {
         if (event.getPlayer().hasPermission(Permission.bypassPermission)) {
             return;
         }
 
         boolean isBedrockPlayer = this.playerChecker.isBedrockPlayer(event.getPlayer().getUniqueId());
-        String servername = event.getOriginalServer().getServerInfo().getName();
+        String servername = event.getServer().getServerInfo().getName();
 
         if (!isBedrockPlayer
                 // Check if the "deny-server-access:" list contains the server name.
