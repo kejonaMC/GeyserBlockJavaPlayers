@@ -25,7 +25,7 @@ public class Configurate {
             if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdirs();
             }
-            try (InputStream input = Configurate.class.getResourceAsStream("/" + file.getName())) {
+            try (InputStream input = Configurate.class.getResourceAsStream("/config.yml")) {
                 if (input != null) {
                     Files.copy(input, file.toPath());
                 } else {
@@ -37,7 +37,7 @@ public class Configurate {
         }
         try {
             final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-            return mapper.readValue(dataDirectory.resolve("config.yml").toFile(), Configurate.class);
+            return mapper.readValue(file, Configurate.class);
         } catch (IOException e) {
             throw new RuntimeException("Cannot create GeyserBlockJavaPlayers config!", e);
         }
@@ -49,7 +49,9 @@ public class Configurate {
     @JsonProperty("deny-server-access")
     private List<String> noServerAccess;
 
-    public List<String> getNoServerAccess() { return noServerAccess; }
+    public List<String> getNoServerAccess() {
+        return noServerAccess;
+    }
 
     public String getBlockJavaMessage() {
         return blockJavaMessage;

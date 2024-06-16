@@ -7,39 +7,35 @@ import net.md_5.bungee.api.event.ServerConnectedEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.event.EventHandler;
+import org.jetbrains.annotations.NotNull;
 
 public final class GeyserBlockJavaPlayersBungee extends Plugin implements Listener {
-    private JavaPlayerChecker playerChecker;
     public Configurate config;
+    public FloodgatePlayerChecker playerChecker;
 
     @Override
     public void onEnable() {
         config = Configurate.create(this.getDataFolder().toPath());
         boolean hasFloodgate = getProxy().getPluginManager().getPlugin("floodgate") != null;
-        boolean hasGeyser = getProxy().getPluginManager().getPlugin("Geyser-BungeeCord") != null;
 
-        if (!hasFloodgate && !hasGeyser) {
-            getLogger().warning("There is no Geyser or Floodgate plugin detected! Disabling...");
+        if (!hasFloodgate) {
+            getLogger().warning("There is no Floodgate plugin detected! Disabling...");
             onDisable();
             return;
         }
 
-        if (hasFloodgate) {
-            this.playerChecker = new FloodgateJavaPlayerChecker();
-        } else {
-            this.playerChecker = new GeyserJavaPlayerChecker();
-        }
+        playerChecker = new FloodgatePlayerChecker();
 
         getProxy().getPluginManager().registerListener(this, this);
     }
 
     @EventHandler
-    public void onPlayerJoin(ServerConnectedEvent event) {
+    public void onPlayerJoin(@NotNull ServerConnectedEvent event) {
         if (event.getPlayer().hasPermission(Permission.bypassPermission)) {
             return;
         }
 
-        boolean isBedrockPlayer = this.playerChecker.isBedrockPlayer(event.getPlayer().getUniqueId());
+        boolean isBedrockPlayer = playerChecker.isBedrockPlayer(event.getPlayer().getUniqueId());
         String servername = event.getServer().getInfo().getName();
 
         if (!isBedrockPlayer

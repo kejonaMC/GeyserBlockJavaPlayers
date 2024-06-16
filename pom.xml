@@ -7,7 +7,7 @@
     <groupId>com.github.camotoy.geyserblockjavaplayers</groupId>
     <artifactId>GeyserBlockJavaPlayers</artifactId>
     <packaging>pom</packaging>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.3-SNAPSHOT</version>
 
     <modules>
         <module>bungeecord</module>
@@ -18,7 +18,7 @@
 
     <description>Prevent Java players from joining your server</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>19</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
