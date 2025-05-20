@@ -1,7 +1,7 @@
 # GeyserBlockJavaPlayers
 [![Discord](https://img.shields.io/discord/853331530004299807?color=7289da&label=discord&logo=discord&logoColor=white)](https://discord.gg/M2SvqCu4e9)
 
-[Download](https://ci.kejonamc.dev/job/GeyserBlockJavaPlayers/job/master/)
+[Download](https://github.com/kejonaMC/GeyserBlockJavaPlayers/releases)
 
 
 Prevent Java players from joining your server - make your server/sub-server Bedrock-only!
