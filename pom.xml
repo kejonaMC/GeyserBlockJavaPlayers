@@ -18,7 +18,7 @@
 
     <description>Prevent Java players from joining your server</description>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
